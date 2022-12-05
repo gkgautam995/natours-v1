@@ -19,8 +19,8 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(
-    () => console.log('Connected to MongoDB'),
-    () => console.log('Failed to connect to MongoDB')
+    () => //console.log('Connected to MongoDB'),
+    () => //console.log('Failed to connect to MongoDB')
   );
 
 // READ JSON FILE
@@ -40,10 +40,10 @@ const importData = async () => {
     await Tour.create(tours);
     await User.create(users, { validateBeforeSave: false });
     await Review.create(reviews);
-    console.log('Data loaded into database successfully');
+    //console.log('Data loaded into database successfully');
     process.exit();
   } catch (e) {
-    console.log(e);
+    //console.log(e);
   }
 };
 
@@ -53,10 +53,10 @@ const deleteData = async () => {
     await Tour.deleteMany();
     await User.deleteMany();
     await Review.deleteMany();
-    console.log('Data successfully deleted');
+    //console.log('Data successfully deleted');
     process.exit();
   } catch (e) {
-    console.log(e);
+    //console.log(e);
   }
 };
 

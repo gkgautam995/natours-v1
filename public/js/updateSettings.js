@@ -7,8 +7,8 @@ export const updateData = async (data, type) => {
   try {
     const url =
       type === 'password'
-        ? 'http://127.0.0.1:3000/api/v2/users/updateMyPassword'
-        : 'http://127.0.0.1:3000/api/v2/users/updateMe';
+        ? '/api/v2/users/updateMyPassword'
+        : '/api/v2/users/updateMe';
 
     const res = await axios({
       method: 'PATCH',
@@ -26,7 +26,7 @@ export const updateData = async (data, type) => {
 };
 
 export const addBookmark = async (tourId) => {
-  const url = `http://127.0.0.1:3000/api/v2/tours/${tourId}/bookmark`;
+  const url = `/api/v2/tours/${tourId}/bookmark`;
   try {
     const res = await axios({
       method: 'PATCH',
@@ -44,7 +44,7 @@ export const addBookmark = async (tourId) => {
 
 export const addTourReview = async (tourId, rating, review) => {
   try {
-    const url = `http://127.0.0.1:3000/api/v2/tours/${tourId}/reviews`;
+    const url = `/api/v2/tours/${tourId}/reviews`;
 
     const res = await axios({
       method: 'POST',
