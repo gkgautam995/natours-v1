@@ -1,0 +1,34 @@
+mixin reviewCard(review)
+    .reviews__card
+        .reviews__avatar
+            img.reviews__avatar-img(src=`/img/users/${review.user.photo}`, alt=`${review.user.name}`)
+            h6.reviews__user= review.user.name
+        p.reviews__text= review.review
+        .reviews__rating
+            each star in [1, 2, 3, 4, 5]
+                svg.reviews__star(class=`reviews__star--${review.rating >= star ? 'active': 'inactive'}`)
+                    use(xlink:href='/img/icons.svg#icon-star')
+
+mixin myReviewCard(review)
+    .reviews__card(style= 'box-shadow: 0 0 0 0')
+        h4.card__sub-heading(style ='margin-bottom: 1rem;')= `${review.tour.name} Tour`
+        p.reviews__text= review.review
+        .reviews__rating
+            each star in [1, 2, 3, 4, 5]
+                svg.reviews__star(class=`reviews__star--${review.rating >= star ? 'active': 'inactive'}`)
+                    use(xlink:href='/img/icons.svg#icon-star')
+
+mixin overviewBox(label, text, icon)
+    .overview-box__detail
+        svg.overview-box__icon
+            use(xlink:href=`/img/icons.svg#icon-${icon}`)
+        span.overview-box__label= label
+        span.overview-box__text= text
+
+mixin navItem(link, text, icon)
+    li(class=`${text === tab ? 'side-nav--active' : ''}`)
+        a(href=`${link}`)
+            svg
+                use(xlink:href=`img/icons.svg#icon-${icon}`)
+            | #{text}
+            

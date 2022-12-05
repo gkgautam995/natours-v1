@@ -1,0 +1,16 @@
+extends base
+
+block content
+    main.main
+        .review-form(style=`background-image: linear-gradient(to right bottom, rgba(0, 0, 0, 0.7) 40%,rgba(0, 0, 0, 0.2)), url('/img/tours/${tour.imageCover}');background-repeat: no-repeat;background-size: cover;`)
+            h2.heading-secondary.ma-bt-lg=`Review for ${tour.name} tour`
+            form.form.form--review
+            .form__group
+                label.form__label(for='rating') Rating
+                input#rating.form__input(type='text', placeholder='', required, minlength='1')
+            .form__group.ma-bt-md
+                label.form__label(for='review') Review
+                textarea#review.form__textarea(name='review', placeholder='', required) 
+            .form__group
+                button#review-tour.btn.btn--green.span-all-rows(data-tour-id=`${tour.id}`) Submit
+                
