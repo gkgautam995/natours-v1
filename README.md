@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <a href="https://natours-v1.vercel.app/"><img src="https://github.com/gkgautam995/natours-v1/blob/master/public/img/logo-green-round.png" alt="Natours" width="200"></a>
+  <a href="https://natours-v1.vercel.app/"><img src="https://play-lh.googleusercontent.com/ncxH6mV7vMPgTpZvr0C9WOWRE83zOrcLdQPdvc0LYBJAmE3I9DIgKPpaGr3Cl_n50D1F" alt="Natours" width="200"></a>
   <br>
   Natours
   <br>
