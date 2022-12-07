@@ -8,6 +8,7 @@ import { updateData } from './updateSettings';
 import { addTourReview } from './updateSettings';
 import { addBookmark } from './updateSettings';
 import { bookTour } from './stripe';
+import { showAlert } from './alert';
 
 // DOM ELEMENTS
 const mapbox = document.getElementById('map');
@@ -111,3 +112,6 @@ if (favBtn) {
     });
   });
 }
+
+const alertMessage = document.querySelector('body').dataset.alert;
+if (alertMessage) showAlert('success', alertMessage, 8);

@@ -2,13 +2,15 @@ const express = require('express');
 
 const viewController = require('../controllers/viewController');
 const authController = require('../controllers/authController');
-const bookingController = require('../controllers/bookingController');
+//const bookingController = require('../controllers/bookingController');
 
 const router = express.Router();
 
+router.use(viewController.alerts);
+
 router.get(
-  '/',
-  bookingController.createBookingCheckout,
+  '/', // After deployment
+  //bookingController.createBookingCheckout,
   authController.isLoggedIn,
   viewController.getOverview
 );
