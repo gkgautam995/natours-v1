@@ -11,7 +11,7 @@ const signToken = (id) =>
     expiresIn: process.env.JWT_EXPIRES_IN,
   });
 
-const createSendToken = (user, statusCode, res) => {
+const createSendToken = (user, statusCode, req, res) => {
   const token = signToken(user._id);
   const cookieOptions = {
     expires: new Date(
@@ -20,8 +20,13 @@ const createSendToken = (user, statusCode, res) => {
     /* secure: true, enable in production env*/
     httpOnly: true, // Related to CORS behavior and attack of browsers that don't support HTTPS
   };
-  res.cookie('jwt', token, cookieOptions);
 
+  // After deployment
+  if (req.secure || req.headers('x-forwarded-proto') === 'https')
+    cookieOptions.secure = true;
+  // After deployment end,
+
+  res.cookie('jwt', token, cookieOptions);
   // Remove password display from output
   user.password = undefined;
   res.status(statusCode).json({
@@ -44,7 +49,7 @@ exports.signup = catchAsync(async (req, res, next) => {
   const url = `${req.protocol}://${req.get('host')}/me`;
   await new Email(newUser, url).sendWelcome();
 
-  createSendToken(newUser, 201, res);
+  createSendToken(newUser, 201, req, res);
 });
 
 exports.logout = (req, res, next) => {
@@ -71,7 +76,7 @@ exports.login = async (req, res, next) => {
   }
 
   // 3. If everything is OK, send token to user
-  createSendToken(user, 200, res);
+  createSendToken(user, 200, req, res);
 };
 
 exports.protect = catchAsync(async (req, res, next) => {
@@ -227,7 +232,7 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
   // 3. Update changedPasswordAt property for the user
 
   // 4. Log the user in, send JWT
-  createSendToken(user, 200, res);
+  createSendToken(user, 200, req, res);
 });
 
 exports.updatePassword = async (req, res, next) => {
@@ -245,5 +250,5 @@ exports.updatePassword = async (req, res, next) => {
   await user.save();
 
   // 4. Log the user in, send JWT
-  createSendToken(user, 200, res);
+  createSendToken(user, 200, req, res);
 };
